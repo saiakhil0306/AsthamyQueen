@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Proposal</title>
+  <style>
+    body {
+      background-color: red;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      position: relative;
+      top: 20%;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    .sub-text {
+      font-size: 1.2em;
+    }
+    button {
+      background-color: white;
+      color: red;
+      padding: 10px 20px;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: pink;
+    }
+    .hidden {
+      display: none;
+    }
+    .poem {
+      font-size: 1.5em;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10px) scale(0.5); opacity: 1; }
+      100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
+    }
+    .heart {
+      position: absolute;
+      color: white;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="HuzoorMera.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="container">
+    <h1>Astha, will you be my Valentine? ❤️</h1>
+    <p class="sub-text">A surprise awaits you inside...</p>
+    <button id="reveal-btn">Click YES to know</button>
+    <div id="poem-container" class="hidden">
+      <p class="poem">
+        "You are my melody divine,<br>
+        Will you be my Valentine?<br>
+        Your smile’s stronger than the finest wine😉<br>
+        Your eyes make my heart entwine.<br>
+        With you, my soul's on cloud nine,<br>
+        Like stars that in the heavens shine."
+      </p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const poemContainer = document.getElementById("poem-container");
+      const revealBtn = document.getElementById("reveal-btn");
+      revealBtn.addEventListener("click", function() {
+        poemContainer.classList.remove("hidden");
+        revealBtn.style.display = "none";
+      });
+      function createHeart() {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+      setInterval(createHeart, 500);
+    });
+  </script>
+</body>
+</html>
